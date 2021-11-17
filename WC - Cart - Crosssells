@@ -1,0 +1,30 @@
+// ---------------------------------------------
+// Remove Cross Sells From Default Position 
+ 
+remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );
+ 
+ 
+// ---------------------------------------------
+// Add them back UNDER the Cart Table
+ 
+add_action( 'woocommerce_proceed_to_checkout', 'woocommerce_cross_sell_display' );
+ 
+ 
+// ---------------------------------------------
+// Display Cross Sells on 3 columns instead of default 4
+ 
+add_filter( 'woocommerce_cross_sells_columns', 'bbloomer_change_cross_sells_columns' );
+ 
+function bbloomer_change_cross_sells_columns( $columns ) {
+return 2;
+}
+ 
+ 
+// ---------------------------------------------
+// Display Only 3 Cross Sells instead of default 4
+ 
+add_filter( 'woocommerce_cross_sells_total', 'bbloomer_change_cross_sells_product_no' );
+  
+function bbloomer_change_cross_sells_product_no( $columns ) {
+return 2;
+}
