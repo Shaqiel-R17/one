@@ -1,0 +1,106 @@
+// 1. Show Buttons // woocommerce template override in child theme.
+  
+   
+// -------------
+// 2. Trigger jQuery script
+  
+add_action( 'wp_footer', 'bbloomer_add_cart_quantity_plus_minus', 9999 );
+  
+function bbloomer_add_cart_quantity_plus_minus() {
+   // Only run this on the single product page
+  // if ( ! is_product() || !is_page('cart') ) return;
+   ?>
+      <script type="text/javascript">
+           
+      jQuery(document).ready(function($){   
+           
+         $('form.cart').on( 'click', 'button.plus, button.minus', function() {
+  
+            // Get current quantity values
+            var qty = $( this ).closest( 'form.cart' ).find( '.input-text.qty:visible' ).first();
+			 //var qty = jQuery(this).parent( 'div' ).find( '.input-text.qty:visible' );
+            var val   = parseInt(qty.val());
+            var max = parseInt(qty.attr( 'max' ));
+            var min = parseInt(qty.attr( 'min' ));
+            var step = parseInt(qty.attr( 'step' ));
+  
+            // Change the value if plus or minus
+            if ( $( this ).is( '.plus' ) ) {
+               if ( max && ( max <= val ) ) {
+                  qty.val( max );
+               } else {
+				   var newVal = val+step;
+                  qty.val(newVal);
+               }
+            } else {
+               if ( min && ( min >= val ) ) {
+                  qty.val( min );
+               } else if ( val > 1 ) {
+                  qty.val( val - step );
+               }
+            }
+			 
+			if ($(document).find('.discount-badge').length) {
+				$(document).find('.discount-badge').remove();
+			}
+			 
+			var discountRatio = '10%'; 
+			
+			 if (qty.val() > 1) {
+				var discountRatio = '20%';
+			}
+			  if(qty.val() > 0) {
+				  var discountBadge = '<span class="discount-badge">-'+discountRatio+'</span>';
+				$('button.plus').append(discountBadge);
+			  }              
+         });
+		  
+		  $(document).on( 'click', 'form.woocommerce-cart-form button.plus, form.woocommerce-cart-form button.minus', function() {
+											 
+			  // Get current quantity values
+            var qty = $( this ).parents( 'td.product-quantity' ).find( 'input.qty:visible' ).first();
+            var val   = parseInt(qty.val());
+            var max = parseInt(qty.attr( 'max' ));
+            var min = parseInt(qty.attr( 'min' ));
+            var step = parseInt(qty.attr( 'step' ));
+  
+            // Change the value if plus or minus
+            if ( $( this ).is( '.plus' ) ) {
+               if ( max && ( max <= val ) ) {
+                  qty.val( max );
+               } else {
+				   var newVal = val+step;
+                  qty.val(newVal);
+               }
+            } else {
+               if ( min && ( min >= val ) ) {
+                  qty.val( min );
+               } else if ( val > 1 ) {
+                  qty.val( val - step );
+               }
+            }
+			  
+			//  if ($(document).find('.discount-badge').length) {
+				//$(document).find('.discount-badge').remove();
+		//	}
+			 
+			var discountRatio = '10%'; 
+			
+			 if (qty.val() > 1) {
+				var discountRatio = '20%';
+			}
+			  if(qty.val() > 0) {
+				  var discountBadge = '<span class="discount-badge">-'+discountRatio+'</span>';
+				  $(this).parents('td').find('button.plus').find('.discount-badge').remove();
+					$(this).parents('td').find('button.plus').append(discountBadge);
+			  }
+			  
+			  qty.trigger('change');
+
+		  });
+           
+      });
+           
+      </script>
+   <?php
+}
