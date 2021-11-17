@@ -1,0 +1,14 @@
+add_action('woocommerce_checkout_process', 'address_field_validation', 10, 0);
+function address_field_validation() {
+
+    // The field value to check
+    $post_value = $_POST['billing_address_1'];
+
+    // If there is no number in this field value, stops the checkout process
+    // and displays an error message.
+    if ( $post_value && ! preg_match( '/[0-9]+/', $post_value ) ) {
+
+        // The error message
+        throw new Exception( sprintf( __( 'Das Adressfeld muss eine Hausnummer enthalten', 'woocommerce' ) ) );
+    }
+}
