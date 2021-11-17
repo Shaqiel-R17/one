@@ -1,0 +1,27 @@
+add_filter( 'wc_shipment_tracking_get_providers', 'custom_shipment_tracking' );
+
+function custom_shipment_tracking( $providers ) {
+
+    unset($providers['Australia']);
+    unset($providers['Austria']);
+    unset($providers['Brazil']);
+    unset($providers['Belgium']);
+    unset($providers['Canada']);
+    unset($providers['Czech Republic']);
+    unset($providers['Finland']);
+    unset($providers['France']);
+    unset($providers['Germany']);
+    unset($providers['Ireland']);
+    unset($providers['Italy']);
+    unset($providers['India']);
+    unset($providers['Netherlands']);
+    unset($providers['New Zealand']);
+    unset($providers['Poland']);
+    unset($providers['Romania']);
+    unset($providers['South African']);
+    unset($providers['Sweden']);
+    unset($providers['United Kingdom']);
+    unset($providers['United States']);
+
+    return $providers;
+}
