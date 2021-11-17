@@ -1,0 +1,14 @@
+add_filter('woocommerce_shipping_method_add_rate', function($rate, $args, $shipping_method) {
+  $original_taxes = array_sum($rate->get_taxes());
+  // No need to perform a recalculation if either taxes or costs are zero (or negative, in
+  // which case they are not valid)
+  if(($original_taxes <= 0) || ($rate->get_cost() <= 0)) {
+    return $rate;
+  }
+  $recalc_ratio = $rate->get_cost() / ($rate->get_cost() + $original_taxes);
+  $rate->set_cost(round($rate->get_cost() * $recalc_ratio, 2));
+
+  $taxes = ($args['calc_tax'] === 'per_item') ? $shipping_method->get_taxes_per_item($rate->get_cost()) : WC_Tax::calc_shipping_tax($rate->get_cost(), WC_Tax::get_shipping_tax_rates());
+  $rate->set_taxes($taxes);
+  return $rate;
+}, 999, 3);
