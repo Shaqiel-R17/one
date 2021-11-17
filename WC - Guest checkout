@@ -1,0 +1,10 @@
+add_filter( 'woocommerce_checkout_posted_data', 'ftm_filter_checkout_posted_data', 10, 1 );
+function ftm_filter_checkout_posted_data( $data ) {
+ 
+    $email = $data['billing_email'];
+ 
+    if ( email_exists( $email ) ) $data['createaccount'] = 0;
+ 
+    return $data;
+ 
+}
