@@ -1,0 +1,10 @@
+add_filter( 'woocommerce_available_payment_gateways', 'bbloomer_payment_gateway_disable_country' );
+  
+function bbloomer_payment_gateway_disable_country( $available_gateways ) {
+global $woocommerce;
+if ( is_admin() ) return;
+if ( isset( $available_gateways['PowerpayCw_OpenInvoice'] ) && (WC()->customer->get_billing_country() != 'CH' && WC()->customer->get_billing_country() != 'LI' && WC()->customer->get_billing_country() != 'DE' && WC()->customer->get_billing_country() != 'AT')){
+unset( $available_gateways['PowerpayCw_OpenInvoice'] );
+}
+return $available_gateways;
+}
