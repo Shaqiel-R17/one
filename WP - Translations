@@ -1,0 +1,31 @@
+function translate_text( $translated ) {
+
+  // The first parameter is the original text, the second parameter is the changed text.
+  $translated = str_ireplace( 'Gutschein anwenden',  'Einlösen',  $translated );
+	$translated = str_ireplace( 'Apply',  'Ok',  $translated );
+	$translated = str_ireplace( 'Coupon code',  'Gutscheincode',  $translated );
+	$translated = str_ireplace( 'Reply',  'Antworten',  $translated );
+	$translated = str_ireplace( 'Last Post',  'Letzer Beitrag',  $translated );
+	$translated = str_ireplace( 'week',  'Woche',  $translated );
+	$translated = str_ireplace( 'weeks',  'Wochen',  $translated );
+	$translated = str_ireplace( 'day',  'Tag',  $translated );
+	$translated = str_ireplace( 'days',  'Tagen',  $translated );
+	$translated = str_ireplace( 'hour',  'Stunde',  $translated );
+	$translated = str_ireplace( 'hours',  'Stunden',  $translated );
+	$translated = str_ireplace( 'month',  'Monat',  $translated );
+	$translated = str_ireplace( 'months',  'Monaten',  $translated );
+	$translated = str_ireplace( 'Your cart is currently empty.',  'Dein Warenkorb ist leer.',  $translated );
+	$translated = str_ireplace( 'Gesamtsumme',  "Gesamtsumme inkl. MwSt. und Versand",  $translated );
+	$translated = str_ireplace( 'Continue with Google',  "Anmelden mit Google",  $translated );
+	$translated = str_ireplace( 'Continue with Facebook',  "Anmelden mit Facebook",  $translated );
+	$translated = str_ireplace( 'Link account with Google',  "Mit Google verbinden",  $translated );
+	$translated = str_ireplace( 'Link account with Facebook',  "Mit Facebook verbinden",  $translated );
+	$translated = str_ireplace( 'Add to cart', "In den Warenkorb",  $translated );
+	$translated = str_ireplace( 'customer review', "",  $translated );
+	
+  // Returns the translated text
+  return $translated;
+
+}
+add_filter( 'gettext',  'translate_text' );
+add_filter( 'ngettext',  'translate_text' );
