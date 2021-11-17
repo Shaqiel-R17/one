@@ -1,0 +1,6 @@
+add_filter( 'register_url', 'custom_register_url' );
+function custom_register_url( $register_url )
+{
+    $register_url = "/registrieren";
+    return $register_url;
+}
