@@ -1,0 +1,8 @@
+add_filter( 'wc_shipment_tracking_get_providers' , 'wc_shipment_tracking_add_custom_provider' );
+
+function wc_shipment_tracking_add_custom_provider( $providers ) {
+	
+	$providers['Standart']['Standart'] = 'https://track.aftership.com/?tracking-numbers=%1$s';
+	return $providers;
+	
+}
