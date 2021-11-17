@@ -1,0 +1,6 @@
+add_filter( 'woocommerce_shipment_tracking_default_provider', 'custom_woocommerce_shipment_tracking_default_provider' );
+
+function custom_woocommerce_shipment_tracking_default_provider( $provider ) {
+	$provider = 'Standart'; 
+	return $provider;
+}
