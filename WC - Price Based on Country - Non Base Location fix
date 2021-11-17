@@ -1,0 +1,1 @@
+add_filter( 'woocommerce_adjust_non_base_location_prices', '__return_false' );
