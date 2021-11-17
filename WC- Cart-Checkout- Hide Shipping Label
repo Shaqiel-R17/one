@@ -1,0 +1,6 @@
+add_filter( 'woocommerce_cart_shipping_method_full_label', 'bbloomer_remove_shipping_label', 9999, 2 );
+   
+function bbloomer_remove_shipping_label( $label, $method ) {
+    $new_label = preg_replace( '/^.+:/', '', $label );
+    return $new_label;
+}
