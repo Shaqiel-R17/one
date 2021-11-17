@@ -1,0 +1,1 @@
+ add_filter( 'wcsatt_show_cart_item_options', '__return_false' );
