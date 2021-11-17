@@ -1,0 +1,7 @@
+add_action( 'init', 'sw_wcsatt_restore_add_to_cart_functionality' );
+
+function sw_wcsatt_restore_add_to_cart_functionality() {
+	remove_filter( 'woocommerce_product_add_to_cart_text', array( 'WCS_ATT_Display_Product', 'add_to_cart_text' ), 10, 2 );
+	remove_filter( 'woocommerce_product_add_to_cart_url', array( 'WCS_ATT_Display_Product', 'add_to_cart_url' ), 10, 2 );
+	remove_filter( 'woocommerce_product_supports', array( 'WCS_ATT_Display_Product', 'supports_ajax_add_to_cart' ), 10, 3 );
+}
