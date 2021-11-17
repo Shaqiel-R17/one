@@ -1,0 +1,7 @@
+add_filter('woocommerce_get_availability', 'custom_get_availability', 1, 2);
+function custom_get_availability($availability, $product) {
+  if ($availability['availability'] == '') {
+    $availability['availability'] = __('Sofort lieferbar', 'woocommerce');
+  }
+  return $availability;
+}
