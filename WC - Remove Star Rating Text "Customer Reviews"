@@ -1,0 +1,11 @@
+add_filter( 'woocommerce_product_tabs', 'my_custom_description_tab', 98 ); 
+function my_custom_description_tab( $tabs ) { 
+ 
+ $tabs['reviews']['callback'] = 'my_custom_description_tab_content'; 
+ return $tabs; 
+} 
+ 
+function my_custom_description_tab_content() { 
+ echo '<h2>Custom Description</h2>'; 
+ echo '<p>Here\'s a custom description</p>'; 
+} 
