@@ -1,0 +1,12 @@
+add_shortcode(
+    'reviews_count',
+    function() {
+        // Make sure we're on a Product.
+        if ( function_exists( 'is_product' ) && is_product() ) {
+            // Get a WC_Product object for the current product.
+            $product = wc_get_product( get_queried_object_id() );
+            // Return the review count.
+            return $product->get_review_count();
+        }
+    }
+);
