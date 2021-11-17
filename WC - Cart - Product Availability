@@ -1,0 +1,5 @@
+add_filter( 'woocommerce_cart_item_name', 'add_availability_below_cart_item_name', 10, 3);
+function add_availability_below_cart_item_name( $item_name, $cart_item, $cart_item_key ) {
+    $availability = $cart_item['data']->get_availability();
+    return $item_name . '<br>' . $availability['availability'];
+}
